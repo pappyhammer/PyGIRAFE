@@ -73,9 +73,9 @@ To run PyGIRAFE from PyPI or github installation execute :
     conda activate girafe_env
     python -m girafe
 
-----------
+--------------------
 Download PyGIRAFE codes
-----------
+--------------------
 
 To download the codes, clone PyGIRAFE:
 
@@ -91,11 +91,18 @@ Documentation
 
 Documentation of PyGIRAFE will be soon available at this address `here <https://pygirafe.readthedocs.io/>`_.
 
--------------
-Example cases
--------------
+---------------
+Personalisation
+---------------
 
-Test data will be soon available
+To create a new analysis wrapper:
+Create a class that inherit from GirafeAnalysisFormatWrapper
+
+To get new option to group data, implement the static function grouped_by() in your analysis wrapper
+
+To implement new analysis, create classes that inherit GirafeAnalysis.
+
+Then in config.yaml indicate with the variable data_files_dir_names then the DATA_FORMAT (replace by the name of your data_format)
 
 --------
 Contacts
@@ -107,7 +114,7 @@ Contacts
 
 PyGIRAFE is an adaptation of a GUI & analyses pipeline that I developed previously, named CICADA.
 It is available at this address: https://gitlab.com/cossartlab/cicada
-Robin DARD, François PHILIPPE and Paul UTEZA have been participating in the developpement of CICADA.
+Robin DARD, François PHILIPPE and Paul UTEZA have been participating in the developement of CICADA.
 
 
 -------
