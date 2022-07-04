@@ -1,0 +1,10 @@
+
+dist/.DS_Store
+
+.DS_Store
+
+src/girafe/analysis/__pycache__/
+
+*.pyc
+
+.idea/
