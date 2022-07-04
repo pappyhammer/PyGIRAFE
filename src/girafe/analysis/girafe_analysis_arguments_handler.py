@@ -360,7 +360,7 @@ class AnalysisArgumentsHandler:
         analysis_args_for_yaml["session_identifiers"] = session_identifiers
 
         # then we add the version of CICADA used
-        analysis_args_for_yaml["CICADA_VERSION"] = CICADA_VERSION
+        analysis_args_for_yaml["GIRAFE_VERSION"] = GIRAFE_VERSION
 
         # print(f"save_analysis_arguments_to_yaml_file")
         for arg_name, analysis_arg in self.args_dict.items():

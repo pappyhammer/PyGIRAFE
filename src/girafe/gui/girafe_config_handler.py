@@ -117,7 +117,7 @@ class ConfigHandler:
         self.main_window_bg_pictures_displayed_by_default = True
 
         self._widget_bg_pictures_folder = dict()
-        list_of_widget_ids = ["tree", "initial_config", "overview", "analysis_params", "sessions"]
+        list_of_widget_ids = ["tree", "initial_config", "overview", "analysis_params", "sessions", "analysis_data"]
         for key, pictures_path in config_dict.items():
             if 'bg_pictures_folder' in key:
                 for widget_id in list_of_widget_ids:

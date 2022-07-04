@@ -96,7 +96,7 @@ class GirafeMainWindow(QMainWindow):
         self.load_group_from_config()
 
         # to uncomment so the last dataset open be automatically uploaded
-        # self.load_data_from_config()
+        self.load_data_from_config()
 
     def load_group_from_config(self):
         """
@@ -152,6 +152,7 @@ class GirafeMainWindow(QMainWindow):
         self.labels = []
         self.to_add_labels = []
         dir_name = self.config_handler.get_files_to_analyse_dir_names(data_format=self.data_format)
+
         if dir_name is not None:
             # for dir_name in dir_names:
             self.load_data_from_dir(dir_name=dir_name, method='clear')
