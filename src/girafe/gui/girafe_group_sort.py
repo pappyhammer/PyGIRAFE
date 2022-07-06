@@ -448,7 +448,8 @@ class SessionsWidget(QWidget):
         #     group_members = dict_group[group_name]
         for group_name, group_members in dict_group.items():
             item = QListWidgetItem()  # delimiter
-            group_name = str(group_name)
+            # adding the number of members in the group
+            group_name = str(group_name) + f" ({len(group_members)})"
             separator = '--------------------------------------------------------------'
             separator = separator[len(group_name):]
             middle_separator = len(separator) // 2
