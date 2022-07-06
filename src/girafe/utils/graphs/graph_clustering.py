@@ -5,6 +5,11 @@ import markov_clustering as mc
 # from cdlib import algorithms, viz
 import os
 
+import matplotlib.pyplot as plt
+from cdlib import NodeClustering
+from cdlib.utils import convert_graph_formats
+from community import induced_graph
+
 # see https://github.com/guyallard/markov_clustering
 
 def markov_clustering(graph, file_name, results_path, with_best_modularity=True):
@@ -51,12 +56,6 @@ def markov_clustering(graph, file_name, results_path, with_best_modularity=True)
 
         return clusters
 
-
-import matplotlib.pyplot as plt
-import networkx as nx
-from cdlib import NodeClustering
-from cdlib.utils import convert_graph_formats
-from community import induced_graph
 
 __all__ = ["plot_network_clusters", "plot_community_graph"]
 
