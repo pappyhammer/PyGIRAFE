@@ -1035,10 +1035,9 @@ QPushButton {
   outline: none;
 }
 
-
 QPushButton[cicada="True"] {
   background-color: #505F69;
-  image: url("icons/rc/cicada_open_white_horizontal.png");
+  image: url("icons/rc/girafe_10.png");
   border: 1px solid #505F69;
   color: #F0F0F0;
   border-radius: 4px;
@@ -1081,10 +1080,9 @@ QPushButton[home="True"]:pressed:hover {
   padding: 0px;
   outline: none;
 }
-
 QPushButton[cicada="True"]:pressed {
   background-color: #19232D;
-  image: url("icons/rc/cicada_closed_white_horizontal.png");
+  image: url("icons/rc/girafe_4.png");
   border: 1px solid #19232D;
 }
 
@@ -1825,7 +1823,7 @@ QTreeView:branch:!has-children:!has-siblings:adjoins-item {
 
 QTreeView:branch:has-children:!has-siblings:closed, QTreeView:branch:closed:has-children:has-siblings {
   border-image: none;
-  image: url("icons/rc/cicada_closed_white.png");
+  image: url("icons/rc/girafe_9.png");
 }
 /*
 url("icons/rc/branch_closed.png")
@@ -1834,15 +1832,15 @@ url("icons/rc/branch_open.png")
 
 QTreeView:branch:open:has-children:!has-siblings, QTreeView:branch:open:has-children:has-siblings {
   border-image: none;
-  image: url("icons/rc/cicada_open_white.png");
+  image: url("icons/rc/girafe_6.png");
 }
 
 QTreeView:branch:has-children:!has-siblings:closed:hover, QTreeView:branch:closed:has-children:has-siblings:hover {
-  image: url("icons/svg/ant_pink_horizontal.svg");
+  image: url("icons/rc/girafe_8.png");
 }
 
 QTreeView:branch:open:has-children:!has-siblings:hover, QTreeView:branch:open:has-children:has-siblings:hover {
-  image: url("icons/svg/ant_pink_standing.svg");
+  image: url("icons/rc/girafe_3.png");
 }
 
 QTreeView::indicator:checked,

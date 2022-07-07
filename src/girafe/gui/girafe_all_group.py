@@ -16,7 +16,7 @@ class AllGroups(QWidget):
     def __init__(self, widget='', parent=None):
         QWidget.__init__(self)
         my_path = os.path.abspath(os.path.dirname(__file__))
-        self.setWindowIcon(QtGui.QIcon(os.path.join(my_path, 'icons/svg/cicada_open_focus.svg')))
+        self.setWindowIcon(QtGui.QIcon(os.path.join(my_path, 'icons/svg/cicada_open_focus.svg'))) #
         self.layout = QVBoxLayout()
         # if widget == 'main', then parent is an instance of GirafeMainWindow
         # else parent is an instance of AnalysisParametersApp (define in girafe_analysis_parameters_gui.py)

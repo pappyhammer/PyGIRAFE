@@ -121,8 +121,31 @@ def build_connectivity_graphs(raster, sampling_rate, time_delay=500, save_graphs
 
 def plot_graph(graph, with_fa2=False, randomized_positions=False, filename=None, iterations=2000,
                node_color=None, edge_color=None, background_color=None, cmap=None, node_size=10,
-               with_labels=False, title=None, ax_to_use=None,
+               with_labels=False, title=None, ax_to_use=None, using_my_weight=False,
                save_formats=None, save_figure=False, path_results=None, with_timestamp_in_file_name=False):
+    """
+
+    :param graph:
+    :param with_fa2:
+    :param randomized_positions:
+    :param filename:
+    :param iterations:
+    :param node_color:
+    :param edge_color:
+    :param background_color:
+    :param cmap:
+    :param node_size:
+    :param with_labels:
+    :param title:
+    :param ax_to_use:
+    :param using_my_weight: if True, edges must have a property "my_weight" that contains a value, the bigger it is,
+    the stronger the link between the nodes
+    :param save_formats:
+    :param save_figure:
+    :param path_results:
+    :param with_timestamp_in_file_name:
+    :return:
+    """
     # if with_fa2:
     #     forceatlas2 = ForceAtlas2(
     #         # Behavior alternatives
@@ -153,7 +176,10 @@ def plot_graph(graph, with_fa2=False, randomized_positions=False, filename=None,
 
         # generate random positions as a dictionary where the key is the node id and the value
         # is a tuple containing 2D coordinates
+        # TODO: need to get all nodes name
         positions = {i: (random.random() * 2 - 1, random.random() * 2 - 1) for i in range(numnodes)}
+    elif using_my_weight:
+        positions = nx.spring_layout(graph, weight='myweight')
     else:
         positions = None
 
@@ -168,7 +194,7 @@ def plot_graph(graph, with_fa2=False, randomized_positions=False, filename=None,
     if edge_color is None:
         edge_color = "cornflowerblue"
     nx.draw_networkx(graph, pos=positions, node_size=node_size, edge_color=edge_color,
-                     cmap=cmap,
+                     cmap=cmap, font_color=edge_color,  font_size=8,
                      node_color=node_color, arrowsize=4, width=0.4,
                      with_labels=with_labels, arrows=True,
                      ax=ax)
