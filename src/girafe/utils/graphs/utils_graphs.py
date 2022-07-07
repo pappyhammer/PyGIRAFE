@@ -194,8 +194,8 @@ def plot_graph(graph, with_fa2=False, randomized_positions=False, filename=None,
     if edge_color is None:
         edge_color = "cornflowerblue"
     nx.draw_networkx(graph, pos=positions, node_size=node_size, edge_color=edge_color,
-                     cmap=cmap, font_color=edge_color,  font_size=8,
-                     node_color=node_color, arrowsize=4, width=0.4,
+                     cmap=cmap, font_color=edge_color,  font_size=5,
+                     node_color=node_color, arrowsize=4, width=0.4, alpha=0.5,
                      with_labels=with_labels, arrows=True,
                      ax=ax)
     if ax_to_use is not None:
