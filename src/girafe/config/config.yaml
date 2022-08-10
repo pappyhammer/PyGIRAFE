@@ -9,6 +9,8 @@ dir_name: /Users/pappyhammer/Documents/academique/python_code_output/scn8a_data/
 dirs_with_analyses_to_load:
 - /Users/pappyhammer/Documents/academique/projects/scn8a_review_github/scn8a_review/src/analyses
 initial_config_widget_bg_pictures_folder: /Users/pappyhammer/Documents/academique/python_code_output/scn8a_data/girafe_bg_pictures/tree
+last_analyse_run_dir_name: /Users/pappyhammer/Documents/academique/python_code_output/scn8a/Distribution
+  RMS to wild by phenotype_2022_08_10.22-53-01
 last_data_wrapper_used: SCN8APatient
 overview_widget_bg_pictures_folder: /Users/pappyhammer/Documents/academique/python_code_output/scn8a_data/girafe_bg_pictures/overview
 sessions_widget_bg_pictures_folder: /Users/pappyhammer/Documents/academique/python_code_output/scn8a_data/girafe_bg_pictures/sessions

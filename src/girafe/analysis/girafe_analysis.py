@@ -289,6 +289,7 @@ class GirafeAnalysis(ABC):
         self.analysis_arguments_handler.save_analysis_arguments_to_yaml_file(path_dir=self._results_path,
                                                                              yaml_file_name=self.yaml_name,
                                                                              )
+        self.config_handler.update_last_analyse_run_dir_name(dir_name=self._results_path)
 
     def update_progressbar(self, time_started, increment_value=0, new_set_value=0):
         """

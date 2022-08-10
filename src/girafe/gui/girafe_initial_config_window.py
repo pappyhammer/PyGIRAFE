@@ -9,9 +9,11 @@ from sortedcontainers import SortedDict
 
 import platform
 import os
+import pathlib
 import glob
 import ctypes
 import importlib.util
+import yaml
 
 
 class MyQComboBox(QComboBox):
@@ -152,10 +154,18 @@ class InitialConfigCentralWidget(QWidget):
 
         self.run_girafe_layout = QHBoxLayout()
         self.run_girafe_layout.addStretch(1)
+        self.v_run_layout = QVBoxLayout()
         self.run_girafe_button = QPushButton("RUN GIRAFE")
         self.run_girafe_button.setToolTip("Run GIRAFE with the given options")
         self.run_girafe_button.clicked.connect(self.run_girafe)
-        self.run_girafe_layout.addWidget(self.run_girafe_button)
+        self.v_run_layout.addWidget(self.run_girafe_button)
+
+        self.run_last_analysis_button = QPushButton("Run last analysis")
+        self.run_last_analysis_button.setToolTip("Run last analysis run in GIRAFE.")
+        self.run_last_analysis_button.clicked.connect(self.run_last_analysis)
+        self.v_run_layout.addWidget(self.run_last_analysis_button)
+
+        self.run_girafe_layout.addLayout(self.v_run_layout)
         self.run_girafe_layout.addStretch(1)
 
         self.main_layout.addLayout(self.run_girafe_layout)
@@ -247,6 +257,97 @@ class InitialConfigCentralWidget(QWidget):
         if self.data_wrapper_combo_box.count() == 0:
             return None
         return self.data_format_dict[self.data_wrapper_combo_box.currentText().strip()][0]
+
+    def run_last_analysis(self):
+        """
+        Run the last analysis
+        :return:
+        """
+        pass
+        # available analyses, instances of
+        # key is a the name of the analysis, value is a list with analysis instance and the Python file_name
+        # self.analyses_widget.available_analyses
+        # First we get the name of the last analysis run
+        # print(f"self.analyses_widget.available_analyses {list(self.analyses_widget.available_analyses.keys())}")
+        #1 ex: ['Clustering variants by distance', 'Compute variants distance', 'Distribution RMS to wild by phenotype', 'Plot age of onset by variant', 'Plot variables vs distance to wild', 'Plot variants on SCN8A channel', 'Variables pairwise correlation']
+        last_analyse_run_dir_name = self.config_handler.get_last_analyse_run_dir_name()
+        # getting the last part
+        last_analyse_name = pathlib.PurePath(last_analyse_run_dir_name).name
+        # with timestamps, used to get the yaml_file
+        last_analyse_name_with_ts = last_analyse_name
+        index_ = last_analyse_name.find("_")
+        if index_ >= 0:
+            # removing the timestamps
+            last_analyse_name = last_analyse_name[:index_]
+        # else we assume there is no timestamp
+        # print(f"last_analyse_name {last_analyse_name}")
+        if last_analyse_name not in self.analyses_widget.available_analyses:
+            print(f"{last_analyse_name} not available")
+            return
+        # GirafeAnalysis
+        # 2nd argument is the path & file_name of the python file
+        analysis_instance = self.analyses_widget.available_analyses[last_analyse_name][0]
+        analysis_instance.gui = False # no GUI involved
+        data_format = self.data_format_dict[self.current_data_wrapper_name][0]
+        data_to_load_dir_name = self.config_handler.get_files_to_analyse_dir_names(data_format=
+                                                               data_format)
+        # print(f"data_to_load_dir_name {data_to_load_dir_name}")
+        if data_to_load_dir_name is None:
+            print(f"No directory to load data from found")
+            return
+
+        # we check if there is the yaml file with the parameters used for the analysis
+        yaml_file = os.path.join(last_analyse_run_dir_name, last_analyse_name_with_ts + ".yaml")
+        if not os.path.isfile(yaml_file):
+            print(f"Not found: {yaml_file}")
+            return
+
+        data_dict = dict()
+        data_wrapper = self.data_format_dict[self.current_data_wrapper_name][2]
+        file_and_dir_names = []
+        # look for filenames in the first directory, if we don't break, it will go through all directories
+        for (dirpath, dirnames, local_filenames) in os.walk(data_to_load_dir_name):
+            file_and_dir_names.extend(local_filenames)
+            file_and_dir_names.extend(dirnames)
+            break
+        for file_and_dir_name in file_and_dir_names:
+            if data_wrapper.is_data_valid(data_ref=os.path.join(data_to_load_dir_name, file_and_dir_name)):
+                data_instance = data_wrapper(data_ref=os.path.join(data_to_load_dir_name, file_and_dir_name))
+                data_dict[data_instance.identifier] = data_instance
+                # nwb_path_list[data_instance.identifier] = os.path.join(data_to_load_dir_name, file_and_dir_name)
+                # to_add_labels.append(data_instance.identifier)
+        # print(f"last_analyse_run_dir_name {last_analyse_run_dir_name}")
+        # print(f"data_dict len {len(data_dict)}")
+
+        # now we want to select only the data used
+        with open(yaml_file, 'r') as stream:
+            analysis_args_from_yaml = yaml.load(stream, Loader=yaml.Loader)
+
+        if "session_identifiers" not in analysis_args_from_yaml:
+            return
+
+        data_list = [data_dict[key] for key in analysis_args_from_yaml["session_identifiers"]]
+        # print(f"len(data_list) {len(data_list)}")
+        analysis_instance.set_data(data_to_analyse=data_list)
+
+        kwargs = {}
+        for arg_name, args_content in analysis_args_from_yaml.items():
+            if "_final_value" not in args_content:
+                # not an argument for the analysis
+                continue
+            kwargs[arg_name] = args_content["_final_value"]
+        analysis_instance.run_analysis(**kwargs)
+
+        # analysis_instance.set_arguments_for_gui()
+        # analysis_arguments_handler = analysis_instance.analysis_arguments_handler
+        # analysis_arguments_handler.load_analysis_argument_from_yaml_file(yaml_file)
+        # analysis_package = AnalysisPackage(cicada_analysis=self.copied_data,
+        #                                    analysis_name=analysis_instance.name,
+        #                                    name=random_id, main_window=self.parent, parent=self,
+        #                                    config_handler=self.config_handler)
+
+        # if used again in the GUI
+        analysis_instance.gui = True
 
     def run_girafe(self):
         """

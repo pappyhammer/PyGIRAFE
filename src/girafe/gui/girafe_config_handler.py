@@ -172,6 +172,47 @@ class ConfigHandler:
         with open(self._path_to_config_file, 'w') as outfile:
             yaml.dump(config_dict, outfile, default_flow_style=False)
 
+    def update_last_analyse_run_dir_name(self, dir_name):
+        """
+        Update the directory of the last analysis run
+        Args:
+            dir_name:
+
+        Returns:
+
+        """
+        if not os.path.isfile(self._path_to_config_file):
+            return
+
+        with open(self._path_to_config_file, 'r') as stream:
+            config_dict = yaml.safe_load(stream)
+
+        if config_dict is None:
+            config_dict = dict()
+        config_dict["last_analyse_run_dir_name"] = dir_name
+        with open(self._path_to_config_file, 'w') as outfile:
+            yaml.dump(config_dict, outfile, default_flow_style=False)
+
+    def get_last_analyse_run_dir_name(self):
+        """
+        Get the directory of the last analysis run
+
+        Returns:
+
+        """
+        if not os.path.isfile(self._path_to_config_file):
+            return
+
+        with open(self._path_to_config_file, 'r') as stream:
+            config_dict = yaml.safe_load(stream)
+
+        if config_dict is None:
+            config_dict = dict()
+        if "last_analyse_run_dir_name" not in config_dict:
+            return None
+
+        return config_dict["last_analyse_run_dir_name"]
+
     def update_config_field(self, field_name, field_value):
         """
         Update a value in the config and update the value in the yaml file
