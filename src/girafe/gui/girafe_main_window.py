@@ -70,7 +70,7 @@ class GirafeMainWindow(QMainWindow):
         self.createMenus()
         self.object_created = []
         self.labels = []
-        self.setWindowTitle(f"CICADA - {self.data_format}")
+        self.setWindowTitle(f"GIRAFE - {self.data_format}")
 
         screenGeometry = QApplication.desktop().screenGeometry()
         # making sure the window is not bigger than the dimension of the screen
