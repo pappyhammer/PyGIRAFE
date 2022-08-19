@@ -114,6 +114,10 @@ class ConfigHandler:
         # usually a new directory specific to the analysis done will be created in this directory
         self._default_results_path = config_dict.get('default_results_path', None)
 
+        # useful to know where to open file dialog by default
+        # to change it, you have to put it by hands in the config file, it is not modified in the code for now
+        self._default_path = config_dict.get('default_path', None)
+
         self.main_window_bg_pictures_displayed_by_default = True
 
         self._widget_bg_pictures_folder = dict()
@@ -310,3 +314,7 @@ class ConfigHandler:
     @default_results_path.setter
     def default_results_path(self, value):
         self._default_results_path = value
+
+    @property
+    def default_path(self):
+        return self._default_path

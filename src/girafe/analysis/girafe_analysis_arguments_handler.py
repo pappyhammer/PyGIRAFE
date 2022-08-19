@@ -31,6 +31,9 @@ class AnalysisArgument:
 
         self._final_value = None
 
+        # useful to get the default path for ex
+        self._config_handler = None
+
     def get_gui_widget(self):
         """
 
@@ -105,6 +108,12 @@ class AnalysisArgument:
 
         """
         self._final_value = self.get_argument_value()
+
+    def set_config_handler(self, config_handler):
+        self._config_handler = config_handler
+
+    def get_config_handler(self):
+        return self._config_handler
 
     def get_family_widget(self):
         """
@@ -339,6 +348,7 @@ class AnalysisArgumentsHandler:
 
         """
         arg_analysis = AnalysisArgument(**kwargs)
+        arg_analysis.set_config_handler(config_handler=self.cicada_analysis.config_handler)
         self.args_dict[arg_analysis.arg_name] = arg_analysis
 
     def save_analysis_arguments_to_yaml_file(self, path_dir, yaml_file_name, data_to_include=None):
