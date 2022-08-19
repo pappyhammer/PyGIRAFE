@@ -116,7 +116,7 @@ class ConfigHandler:
 
         # useful to know where to open file dialog by default
         # to change it, you have to put it by hands in the config file, it is not modified in the code for now
-        self._default_path = config_dict.get('default_path', None)
+        self._default_file_dialog_path = config_dict.get('default_file_dialog_path', None)
 
         self.main_window_bg_pictures_displayed_by_default = True
 
@@ -316,5 +316,5 @@ class ConfigHandler:
         self._default_results_path = value
 
     @property
-    def default_path(self):
-        return self._default_path
+    def default_file_dialog_path(self):
+        return self._default_file_dialog_path

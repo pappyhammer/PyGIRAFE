@@ -4,7 +4,7 @@ available_data_wrappers:
 - /Users/pappyhammer/Documents/academique/projects/scn8a_review_github/scn8a_review/src/SCN8A_patient.py
 data_files_dir_names:
   SCN8A: /Users/pappyhammer/Documents/academique/python_code_output/scn8a_data/patients_xls
-default_path: /Users/pappyhammer/Documents/academique/python_code_output
+default_file_dialog_path: /Users/pappyhammer/Documents/academique/python_code_output
 default_results_path: /Users/pappyhammer/Documents/academique/python_code_output/scn8a
 dir_name: /Users/pappyhammer/Documents/academique/python_code_output/scn8a_data/patients_xls
 dirs_with_analyses_to_load:

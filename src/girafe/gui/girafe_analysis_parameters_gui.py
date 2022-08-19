@@ -418,8 +418,8 @@ class FileDialogWidget(MyQFrame, ParameterWidgetModel, metaclass=FinalMeta):
             self.file_dialog.setDirectory(default_value)
         else:
             config_handler = self.analysis_arg.get_config_handler()
-            if config_handler is not None and config_handler.default_path is not None:
-                self.file_dialog.setDirectory(config_handler.default_path)
+            if config_handler is not None and config_handler.default_file_dialog_path is not None:
+                self.file_dialog.setDirectory(config_handler.default_file_dialog_path)
         # else:
         #     self.file_dialog.setDirectory(str(ROOT_DIR))
 
