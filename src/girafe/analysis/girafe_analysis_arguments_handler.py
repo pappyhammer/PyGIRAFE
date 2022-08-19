@@ -341,7 +341,7 @@ class AnalysisArgumentsHandler:
         arg_analysis = AnalysisArgument(**kwargs)
         self.args_dict[arg_analysis.arg_name] = arg_analysis
 
-    def save_analysis_arguments_to_yaml_file(self, path_dir, yaml_file_name):
+    def save_analysis_arguments_to_yaml_file(self, path_dir, yaml_file_name, data_to_include=None):
         """
         Save the arguments value to a yaml file.
         The first key will represent the argument name
@@ -349,6 +349,7 @@ class AnalysisArgumentsHandler:
         Args:
             path_dir: directory in which save the yaml file
             yaml_file_name: yaml file name, with the extension or without (will be added in that case)
+            data_to_include= dict with data to include in the yaml
 
         Returns:
 
@@ -366,6 +367,9 @@ class AnalysisArgumentsHandler:
         for arg_name, analysis_arg in self.args_dict.items():
             analysis_args_for_yaml[arg_name] = analysis_arg.get_all_attributes()
             # print(f"{arg_name}: {analysis_arg.get_all_attributes()}")
+
+        if data_to_include is not None and isinstance(data_to_include, dict):
+            analysis_args_for_yaml.update(data_to_include)
 
         if (not yaml_file_name.endswith(".yaml")) and (not yaml_file_name.endswith(".yml")):
             yaml_file_name = yaml_file_name + ".yaml"

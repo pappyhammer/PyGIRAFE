@@ -286,8 +286,14 @@ class GirafeAnalysis(ABC):
                     thread.set_results_path(self._results_path)
         if self.yaml_name == '':
             self.yaml_name = path_leaf(self._results_path)
+        data_to_include = None
+        if "__to_copy_in_new_yaml__" in kwargs:
+            # used when the last analysis is re-run through the first window of the GUI
+            # See in girafe_initial_config_window.py run_last_analysis()
+            data_to_include = kwargs["__to_copy_in_new_yaml__"]
         self.analysis_arguments_handler.save_analysis_arguments_to_yaml_file(path_dir=self._results_path,
                                                                              yaml_file_name=self.yaml_name,
+                                                                             data_to_include=data_to_include
                                                                              )
         self.config_handler.update_last_analyse_run_dir_name(dir_name=self._results_path)
 

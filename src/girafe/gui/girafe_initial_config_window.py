@@ -330,12 +330,18 @@ class InitialConfigCentralWidget(QWidget):
         # print(f"len(data_list) {len(data_list)}")
         analysis_instance.set_data(data_to_analyse=data_list)
 
+        # so we can create a copy of this yaml without using the GUI
+        to_copy_in_new_yaml = dict()
+
         kwargs = {}
         for arg_name, args_content in analysis_args_from_yaml.items():
             if "_final_value" not in args_content:
                 # not an argument for the analysis
                 continue
+            to_copy_in_new_yaml[arg_name] = args_content
             kwargs[arg_name] = args_content["_final_value"]
+
+        kwargs["__to_copy_in_new_yaml__"] = to_copy_in_new_yaml
         analysis_instance.run_analysis(**kwargs)
 
         # analysis_instance.set_arguments_for_gui()
