@@ -22,12 +22,17 @@ Don't hesitate to contact us if you want more information.
 Overview
 --------
 
-.. image:: images/girafe_screenshot.png
+.. image:: images/girafe_initial_config.png
     :align: center
-    :alt: PyGIRAFE screenshot
+    :alt: PyGIRAFE initial config window
 
+.. image:: images/girafe_main.png
+    :align: center
+    :alt: PyGIRAFE main window
 
-**To see it in action, check this** `youtube video <https://youtu.be/xgf2RmrGVx0>`_
+.. image:: images/girafe_analysis.png
+    :align: center
+    :alt: PyGIRAFE analysis window
 
 
 ------------
@@ -54,7 +59,7 @@ Install release from PyPI or from gitlab
 Follow the latest updates
 ------------
 
-PyGIRAFE is under active development, if you have already installed CICADA and want to be sure you are using the latest version of the code, run the following:
+PyGIRAFE is under active development, if you have already installed PyGIRAFE and want to be sure you are using the latest version of the code, run the following:
 
 .. code::
 
@@ -112,9 +117,9 @@ Contacts
 - Julien Denis (main developer): julien.denis3 (at) gmail.com
 
 
-PyGIRAFE is an adaptation of a GUI & analyses pipeline that I developed previously, named CICADA.
+PyGIRAFE is an adaptation of a GUI & analyses pipeline that I co-developed previously, named CICADA.
 It is available at this address: https://gitlab.com/cossartlab/cicada
-Robin DARD, François PHILIPPE and Paul UTEZA have been participating in the developement of CICADA.
+Robin DARD, François PHILIPPE and Paul UTEZA have been participating in the development of CICADA.
 
 
 -------

@@ -36,7 +36,7 @@ setup(
     # There are some restrictions on what makes a valid project name
     # specification here:
     # https://packaging.python.org/specifications/core-metadata/#name
-    name='PyCICADA',  # Required
+    name='PyGIRAFE',  # Required
 
     # Versions should comply with PEP 440:
     # https://www.python.org/dev/peps/pep-0440/
@@ -44,12 +44,12 @@ setup(
     # For a discussion on single-sourcing the version across setup.py and the
     # project code, see
     # https://packaging.python.org/en/latest/single_source_version.html
-    version="1.0.9",  # Required
+    version="1.0.0",  # Required
     # cmdclass=versioneer.get_cmdclass(),
     # This is a one-line description or tagline of what your project does. This
     # corresponds to the "Summary" metadata field:
     # https://packaging.python.org/specifications/core-metadata/#summary
-    description='A Calcium Imaging Analyses Toolbox',  # Optional
+    description='A Python Analyses Toolbox',  # Optional
 
     # This is an optional longer description of your project that represents
     # the body of text which users will see when they visit PyPI.
@@ -77,11 +77,11 @@ setup(
     #
     # This field corresponds to the "Home-Page" metadata field:
     # https://packaging.python.org/specifications/core-metadata/#home-page-optional
-    url='https://gitlab.com/cossartlab/cicada',  # Optional
+    url='https://github.com/pappyhammer/pygirafe',  # Optional
 
     # This should be your name or the name of the organization which owns the
     # project.
-    author='Cossart Team',  # Optional
+    author='Julien Denis',  # Optional
 
     # This should be a valid email address corresponding to the author listed
     # above.
@@ -115,7 +115,7 @@ setup(
     # project page. What does your project relate to?
     #
     # Note that this is a string of words separated by whitespace, not a list.
-    keywords='cicada pycicada nwb python toolbox calcium-imaging analysis gui',  # Optional
+    keywords='girafe pygirafez',  # Optional
 
     # You can just specify package directories manually here if your project is
     # simple. Or you can use find_packages().
@@ -124,7 +124,7 @@ setup(
     # the `py_modules` argument instead as follows, which will expect a file
     # called `my_module.py` to exist:
     #
-    # py_modules=["cicada"],
+    # py_modules=["girafe"],
     #
     #packages=find_packages(exclude=['contrib', 'docs', 'tests']),  # Required
     package_dir={'': 'src'},
@@ -199,7 +199,7 @@ setup(
     # maintainers, and where to support the project financially. The key is
     # what's used to render the link text on PyPI.
     project_urls={  # Optional
-        'Bug Reports': 'https://gitlab.com/cossartlab/cicada/issues',
-        'Source': 'https://gitlab.com/cossartlab/cicada/tree/master/src',
+        'Bug Reports': 'https://github.com/pappyhammer/PyGIRAFE/issues',
+        'Source': 'https://github.com/pappyhammer/PyGIRAFE/tree/master/src',
     },
 )

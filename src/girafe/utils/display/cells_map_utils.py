@@ -1164,7 +1164,7 @@ class CellsCoord:
         # show the commun n_in and n_out, if 4: only n_in with dotted to show the commun n_in and n_out,
         if ax_to_use is None:
             if data_id is None:
-                data_id= ""
+                data_id = ""
             if save_plot:
                 if isinstance(save_formats, str):
                     save_formats = [save_formats]

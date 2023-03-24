@@ -889,7 +889,7 @@ class CicadaPsthAnalysis(CicadaAnalysis):
                         continue
 
                     # TODO: See for fusioning epochs from a same group so there are extended
-                    # psth_values is a list of the same length as fct_to_apply,
+                    # y_values is a list of the same length as fct_to_apply,
                     # containing a list of float of size '(range_value*2)+1'
                     psth_frames_indices, psth_values = get_psth_values(data=neuronal_data[cell_indices_in_group],
                                                                        epochs=epochs_frames_in_group,

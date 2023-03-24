@@ -117,8 +117,8 @@ def plot_several_psth(results_path, data_psth, colors_plot,
     Args:
         results_path: (string) path of dir where to save the results
         data_psth: list of length the number of plot. Each list contains 2 list or 1d array, the first one being
-        time_x_values and second one psth_values. time_x_values 1d array containing the time from -n to +n corresponding to psth_values
-        psth_values list of 1d array, from 1 to 3 1d array of the same length as time_x_values.
+        time_x_values and second one y_values. time_x_values 1d array containing the time from -n to +n corresponding to y_values
+        y_values list of 1d array, from 1 to 3 1d array of the same length as time_x_values.
         First one represents the mean or median values, if 2 elements then the second represents the std, if
         3 elements then the 2nd and 3rd elements represents the 25th and 75th percentile
         colors_plot: list of colors, same length as data_psth
@@ -174,7 +174,7 @@ def plot_several_psth(results_path, data_psth, colors_plot,
         for ax_index in range(len(axes)):
             if ax_index >= n_psth:
                 continue
-            # psth_values is a list of 1d array
+            # y_values is a list of 1d array
             time_x_values, psth_values = data_psth[ax_index]
             psth_values_to_use = psth_values[0]
             # then we take the 75th percentile
@@ -259,7 +259,7 @@ def plot_one_psth(results_path, time_x_values, psth_values, color_plot, x_label=
 
     Args:
         results_path: (string) path of dir where to save the results
-        time_x_values: 1d array containing the time from -n to +n corresponding to psth_values
+        time_x_values: 1d array containing the time from -n to +n corresponding to y_values
         psth_values: list of 1d array, from 1 to 3 1d array of the same length as time_x_values.
         First one represents the mean or median values, if 2 elements then the second represents the std, if
         3 elements then the 2nd and 3rd elements represents the 25th and 75th percentile
@@ -330,6 +330,7 @@ def plot_one_psth(results_path, time_x_values, psth_values, color_plot, x_label=
             ax1.hlines(threshold_line_y_value, np.min(time_x_values), np.max(time_x_values),
                        lw=1, linestyles="dashed", color="white", zorder=10)
         max_value = np.max((max_value, np.max(psth_values[0])))
+
     ax1.vlines(0, 0,
                max_value, color=color_v_line, linewidth=2,
                linestyles="dashed")
