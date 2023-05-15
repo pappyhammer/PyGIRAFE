@@ -7,7 +7,7 @@ import yaml
 from qtpy import QtCore
 import sys
 from random import randint
-from girafe.preprocessing.utils import get_subfiles, get_subdirs
+from girafe.utils.misc import get_subfiles, get_subdirs
 from abc import ABC, abstractmethod
 from girafe.gui.girafe_all_group import AllGroups
 from girafe.gui.girafe_analysis_overview import AnalysisOverview, AnalysisState, ResultsButton

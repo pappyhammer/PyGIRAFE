@@ -6,7 +6,7 @@ import os
 from copy import deepcopy
 import sys
 from functools import partial
-import girafe.preprocessing.utils as utils
+import girafe.utils.misc as utils
 import yaml
 # from cicada.gui.exploratory.cicada_exploratory_main import ExploratoryMainWindow
 from girafe.gui.girafe_analysis_tree_gui import AnalysisTreeApp

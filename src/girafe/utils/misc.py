@@ -1,5 +1,8 @@
 import numpy as np
 import math
+import os
+import ntpath
+import collections
 
 
 def split_string(string_to_split, separator=" "):
@@ -420,3 +423,149 @@ def fill_gaps_in_continuous_periods(boolean_serie, max_gap_size):
 def print_info_dict(my_dict):
     for key, data in my_dict.items():
         print(f"- {key}: {data}")
+
+
+def get_subfiles(current_path, relative_path=False, depth=1):
+    # Get all files in the last directory of the path
+    subfiles = []
+    for (dirpath, dirnames, filenames) in os.walk(current_path):
+        if relative_path:
+            filenames = [os.path.join(dirpath, filename) for filename in filenames]
+        subfiles.extend(filenames)
+        depth -= 1
+        if depth == 0:
+            break
+    return subfiles
+
+
+def get_subdirs(current_path, depth=1):
+    # Get all directories in the last directory of the path
+    subdirs = []
+    for (dirpath, dirnames, filenames) in os.walk(current_path):
+        subdirs.extend(dirnames)
+        depth -= 1
+        if depth == 0:
+            break
+    return subdirs
+
+
+def path_leaf(path):
+    head, tail = ntpath.split(path)
+    return tail or ntpath.basename(head)
+
+
+def class_name_to_module_name(class_name):
+    """
+    Transform the string representing a class_name, by removing the upper case letters, and inserting
+    before them an underscore if 2 upper case letters don't follow. Underscore are also inserted before numbers
+    ex: ConvertAbfToNWB -> convert_abf_to_nwb
+    :param class_name: string
+    :return:
+    """
+
+    if len(class_name) == 1:
+        return class_name.lower()
+
+    new_class_name = class_name[0]
+    for index in range(1, len(class_name)):
+        letter = class_name[index]
+        if letter.isdigit():
+            # first we check if the previous letter was not a digit
+            if class_name[index - 1].isupper():
+                new_class_name = new_class_name + letter
+                continue
+            new_class_name = new_class_name + "_" + letter
+            continue
+        if not letter.isupper():
+            new_class_name = new_class_name + letter
+            continue
+        # first we check if the previous letter was not upper
+        if class_name[index - 1].isupper():
+            new_class_name = new_class_name + letter
+            continue
+        new_class_name = new_class_name + "_" + letter
+
+    return new_class_name.lower()
+
+
+def module_name_to_class_name(module_name):
+    """
+    Transform the string representing a module_name, by removing underscores, , and transforming as upper cases
+    the following letter.
+    ex: convert_abf_to_nwb -> ConvertAbfToNwb
+    :param module_name: string
+    :return:
+    """
+
+    if len(module_name) == 1:
+        return module_name.upper()
+
+    new_module_name = module_name[0].upper()
+    for index in range(1, len(module_name)):
+        letter = module_name[index]
+        if letter == "_":
+            continue
+        if letter.isdigit():
+            new_module_name = new_module_name + letter
+            continue
+        if letter.islower():
+            if module_name[index - 1] == "_":
+                new_module_name = new_module_name + letter.upper()
+                continue
+        new_module_name = new_module_name + letter
+
+    return new_module_name
+
+class ComparableItem:
+    """
+    Make it possible to sort a list of items of different types, such as int and string
+    """
+
+    def __init__(self, value):
+        self.value = value
+
+    def __lt__(self, other):
+        if isinstance(self.value, int) or isinstance(self.value, float):
+            if isinstance(other.value, int) or isinstance(other.value, float):
+                return self.value < other.value
+            if isinstance(other.value, str):
+                return True
+
+        if isinstance(self.value, str):
+            if isinstance(other.value, int) or isinstance(other.value, float):
+                return False
+            if isinstance(other.value, str):
+                return self.value < other.value
+
+        return True
+
+    def __str__(self):
+        return str(self.value)
+
+    def __eq__(self, other):
+        return self.value == other.value
+
+    def __hash__(self):
+        return self.value.__hash__()
+
+
+def flatten(l):
+    """
+    Flatten a nested list no matter the nesting level
+
+
+    Args:
+        l (list): List to flatten
+
+    Returns:
+        List without nest
+
+    Examples:
+        >>> flatten([1,2,[[3,4],5],[7]])
+        [1,2,3,4,5,7]
+    """
+
+    if isinstance(l, collections.Iterable) and not isinstance(l, (str, bytes)):
+        return [a for i in l for a in flatten(i)]
+    else:
+        return [l]

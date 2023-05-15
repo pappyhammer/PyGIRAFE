@@ -4,7 +4,7 @@ from qtpy.QtCore import Qt
 
 from girafe.gui.girafe_main_window import GirafeMainWindow
 from girafe.gui.girafe_config_handler import instantiate_girafe_data_wrapper
-from girafe.preprocessing.utils import module_name_to_class_name
+from girafe.utils.misc import module_name_to_class_name
 from sortedcontainers import SortedDict
 
 import platform

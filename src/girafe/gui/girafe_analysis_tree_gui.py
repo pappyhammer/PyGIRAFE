@@ -2,7 +2,7 @@ from qtpy.QtWidgets import *
 from qtpy.QtCore import QAbstractItemModel, QModelIndex, Qt
 from qtpy import QtCore, QtGui
 from sortedcontainers import SortedDict
-from girafe.preprocessing.utils import class_name_to_module_name, module_name_to_class_name
+# from girafe.utils.misc import class_name_to_module_name, module_name_to_class_name
 from girafe.gui.girafe_analysis_parameters_gui import AnalysisPackage
 import importlib
 import glob

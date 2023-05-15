@@ -2,7 +2,7 @@ import yaml
 import os
 from random import randint
 import importlib.util
-from girafe.preprocessing.utils import module_name_to_class_name
+from girafe.utils.misc import module_name_to_class_name
 
 def instantiate_girafe_data_wrapper(wrapper_file_name):
     """
