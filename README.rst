@@ -6,14 +6,24 @@ PyGIRAFE stands for Python Graphical Interface to Run Analyses Flexibly and Easi
 
 It's a Python graphical interface aimed for facilitating the analyses of data. 
 
-Our goal is to provide an easy-to-use GUI that allows to load your data, filter them and fine-tuned your analyses parameters. 
+Our goal is to provide an easy-to-use GUI that allows to load your data, filter them and fine-tuned your analyses parameters.
 
-The analysis parameters are easy to set through our GUI and can be saved and re-used any time.
-Each time, a log file and all parameters are saved to improve reproducibility.
+Any kind of data can be used after having configured a Python wrapper to link your data to GIRAFE interface.
+
+You can select the data on which you want to run a given analysis, manually or using pre-set filters
+while having the option to save groups of data for a quick access during future runs.
 
 The toolbox was designed to be flexible. Thus adding a new analysis is done easily in a plugin way.
 
-Different formats of data can be added easily, as we used a wrapper system.
+It is then possible to graphically set the parameters of the analysis, those set parameters
+can be saved for a quick setting during future runs.
+
+In order to improve reproducibility, two files are generated during the execution of each analysis:
+a log file containing the text displayed on the prompt and a file containing the given parameters set
+that can be used for a quick setting during future runs.
+
+For a more pleasant experience, the GUI's skin can be configured
+so the images of your choice will appeared on the background.
 
 PyGIRAFE is under development. The version published is an alpha version and the documentation is still not complete.
 Don't hesitate to contact us if you want more information.
